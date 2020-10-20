@@ -1,0 +1,64 @@
+import firebase from './apiConnection';
+
+// Types
+import IApi, { User } from './api.types';
+
+// Utils
+import {UserException} from '../utils/Exceptions';
+
+const api: IApi = {
+  checkUserExists: async (id) => {
+    const user = await firebase.firestore().collection("users").doc(id).get();
+
+    return user ? true : false;
+  },
+  addUser: async () => {
+    const userExists = await api.checkUserExists('uuid');
+    if (!userExists) {
+      await firebase.firestore().collection("users").doc("uuid").set({
+        first: "Adonai",
+        last: "Lovelace",
+        born: 1815
+      }).catch(error => {
+        throw error;
+      });
+
+      return "Usuário criado com sucesso"
+    } else {
+      throw UserException("Usuário já existe");
+    }
+  },
+  getAllUsers: async () => {
+    let users: Array<User> = [];
+    await firebase.firestore().collection("users").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let userData = {
+          id: doc.id,
+          first: String(doc.data().first),
+          last: String(doc.data().last),
+          born: Number(doc.data().born),
+        }
+
+        users.push(userData);
+      });
+    });
+
+    return users;
+  },
+  getUser: async (id) => {
+    const userData = await firebase.firestore().collection("users").doc(id).get();
+
+    if (userData.exists) {
+      return {
+        id: userData.id,
+        first: String(userData.data()?.first),
+        last: String(userData.data()?.last),
+        born: 1,
+      }
+    } else {
+      throw UserException("Usuário não existe");
+    }
+  }
+}
+
+export default api;
