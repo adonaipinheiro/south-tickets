@@ -1,11 +1,7 @@
 import React from 'react';
 
 function App() {
-  return (
-    <div>
-      South Tickets
-    </div>
-  );
+  return <h1>South Tickets</h1>;
 }
 
 export default App;
