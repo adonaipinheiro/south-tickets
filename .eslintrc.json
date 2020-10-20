@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -26,9 +27,13 @@
     "react",
     "@typescript-eslint",
     "react-hooks",
-    "prettier"
+    "prettier",
+    "jest"
   ],
   "rules": {
+    "no-nested-ternary": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/jsx-props-no-spreading": "off",
     "prettier/prettier": "error",
     "no-use-before-define": "off",
     "react-hooks/rules-of-hooks": "error",

@@ -11,11 +11,7 @@ interface RouteProps extends ReactRouteProps {
   component: React.ComponentType;
 }
 
-const Route = ({
-  isPrivate = true,
-  component: Component,
-  ...rest
-}: RouteProps) => {
+const Route = ({ isPrivate, component: Component, ...rest }: RouteProps) => {
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const loadTime = useCallback(() => {
@@ -40,6 +36,10 @@ const Route = ({
       }}
     />
   );
+};
+
+Route.defaultProps = {
+  isPrivate: true,
 };
 
 export default Route;

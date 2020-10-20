@@ -7,5 +7,5 @@ describe('Application', () => {
   it('Should be able to render the Applicaiton', () => {
     const app = render(<App />);
     expect(app).toBeTruthy();
-  })
-})
+  });
+});

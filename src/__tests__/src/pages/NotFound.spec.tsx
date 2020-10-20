@@ -7,5 +7,5 @@ describe('Pages - NotFound', () => {
   it('Should be able to render NotFound', () => {
     const app = render(<NotFound />);
     expect(app).toBeTruthy();
-  })
-})
+  });
+});
