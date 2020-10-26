@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import { ActionType } from 'typesafe-actions';
 import api from '../../../services/api';
 

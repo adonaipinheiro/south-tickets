@@ -1,4 +1,4 @@
-import { createStore, Store, Middleware, applyMiddleware } from 'redux';
+import { createStore, Store, Middleware, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 // Reducers
@@ -16,9 +16,11 @@ export interface ApplicationState {
 
 const sagaMiddleware = createSagaMiddleware();
 
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const middlewares: Middleware[] = [sagaMiddleware]
 
-const store: Store<ApplicationState> = createStore(rootReducer, applyMiddleware(...middlewares));
+const store: Store<ApplicationState> = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)));
 
 sagaMiddleware.run(rootSaga);
 
