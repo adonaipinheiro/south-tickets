@@ -12,10 +12,12 @@ import GlobalStyles from './styles/global';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Routes />
-      <GlobalStyles />
-    </Provider>
+    <React.Fragment>
+      <Provider store={store}>
+        <Routes />
+        <GlobalStyles />
+      </Provider>
+    </React.Fragment>
   );
 }
 
