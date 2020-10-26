@@ -1,3 +1,1 @@
-import UserException from './UserException';
-
-export { UserException };
+export {default as UserException} from './UserException';

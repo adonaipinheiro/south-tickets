@@ -1,7 +1,14 @@
 import React from 'react';
 
+// Styles
+import { Container } from './styles';
+
 const LoadingPage = () => {
-  return <div />;
+  return (
+    <Container>
+      Loading
+    </Container>
+  );
 };
 
 export default LoadingPage;

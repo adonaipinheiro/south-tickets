@@ -1,16 +1,16 @@
 import firebase from './apiConnection';
 
 // Types
-import IApi, { User } from './api.types';
+import ApiInterface, { User } from './api.types';
 
 // Utils
 import {UserException} from '../utils/Exceptions';
 
-const api: IApi = {
+const api: ApiInterface = {
   checkUserExists: async (id) => {
     const user = await firebase.firestore().collection("users").doc(id).get();
 
-    return user ? true : false;
+    return user.exists;
   },
   addUser: async () => {
     const userExists = await api.checkUserExists('uuid');

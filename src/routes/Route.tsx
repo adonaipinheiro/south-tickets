@@ -4,8 +4,11 @@ import {
   Redirect,
   RouteProps as ReactRouteProps,
 } from 'react-router-dom';
+
+// Components
 import LoadingPage from '../components/LoadingPage';
 
+// Interface
 interface RouteProps extends ReactRouteProps {
   isPrivate?: boolean;
   component: React.ComponentType;
