@@ -1,23 +1,21 @@
-import React, { useEffect } from 'react';
-import api from '../../services/api';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Types
+import { ApplicationState } from '../../store';
+import { logIn } from '../../store/ducks/auth/actions';
 
 // Styles
 import { Container } from './styles';
 
 const SignIn = () => {
-  const GetUser = () => {
-    api.getUser('uuid').then(r=>{console.log(r)}).catch(e=>{console.log(e)});
-    api.addUser().then(r=>{console.log(r)}).catch(e=>{console.log(e)});
-    api.getAllUsers().then(r=>{console.log(r)}).catch(e=>{console.log(e)});
-  }
-
-  useEffect(()=>{
-    GetUser();
-  }, [])
+  const auth = useSelector((state: ApplicationState) => state.auth);
+  const dispatch = useDispatch();
 
   return (
     <Container>
-      SignIn
+      {auth.email}
+      <button type="button" onClick={() => dispatch(logIn('teste', 'senha'))}>Redux</button>
     </Container>
   );
 };
