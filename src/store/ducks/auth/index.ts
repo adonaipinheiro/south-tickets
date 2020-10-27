@@ -4,7 +4,7 @@ import { Reducer } from 'redux';
 import { AuthState, AuthTypes, ActionsTypes } from './types';
 
 const INITIAL_STATE: AuthState = {
-  email: 'teste 2',
+  email: '',
   pass: '',
   isLoading: false,
   isLogged: false,
