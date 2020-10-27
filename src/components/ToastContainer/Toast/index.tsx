@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { CSSObject } from 'styled-components';
 
 // Types
 import { Toast as ToastI } from '../../../store/ducks/toast/types';
@@ -12,7 +13,7 @@ import { removeToast } from '../../../store/ducks/toast/actions';
 
 interface Toast {
   message: ToastI;
-  style: object;
+  style: CSSObject;
 }
 
 const icons = {

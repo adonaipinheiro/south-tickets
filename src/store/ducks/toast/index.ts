@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 
 // Types
 import { ToastState, ToastTypes, ActionsTypes } from './types';
@@ -14,7 +14,7 @@ const toast: Reducer<ToastState, ActionsTypes> = (
 ) => {
   switch (action.type) {
     case ToastTypes.ADD_TOAST:
-      const id = uuid();
+      const id = v4();
 
       const toastMessage = {
         id,
