@@ -8,33 +8,36 @@ const INITIAL_STATE: AuthState = {
   pass: '',
   isLoading: false,
   isLogged: false,
-  error: false
-}
+  error: false,
+};
 
-const auth: Reducer<AuthState, ActionsTypes> = (state = INITIAL_STATE, action)  => {
+const auth: Reducer<AuthState, ActionsTypes> = (
+  state = INITIAL_STATE,
+  action,
+) => {
   switch (action.type) {
     case AuthTypes.LOAD_REQUEST:
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
 
     case AuthTypes.LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isLogged: true,
-      }
+      };
 
     case AuthTypes.LOAD_ERROR:
       return {
         ...state,
-        error: true
-      }
+        error: true,
+      };
 
     default:
       return state;
   }
-}
+};
 
 export default auth;

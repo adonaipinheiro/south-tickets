@@ -1,1 +1,1 @@
-export {default as UserException} from './UserException';
+export { default as UserException } from './UserException';

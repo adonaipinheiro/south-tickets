@@ -15,7 +15,9 @@ const SignIn = () => {
   return (
     <Container>
       {auth.email}
-      <button type="button" onClick={() => dispatch(logIn('teste', 'senha'))}>Redux</button>
+      <button type="button" onClick={() => dispatch(logIn('teste', 'senha'))}>
+        Redux
+      </button>
     </Container>
   );
 };

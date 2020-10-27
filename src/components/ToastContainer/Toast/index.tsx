@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-//Types
+// Types
 import { Toast as ToastI } from '../../../store/ducks/toast/types';
 
-//Styles
+// Styles
 import { Container, IconAlert, IconX, IconCheck, IconInfo } from './styles';
 
 // Actions
@@ -19,27 +19,31 @@ const icons = {
   info: <IconInfo size={24} />,
   success: <IconCheck size={24} />,
   error: <IconAlert size={24} />,
-}
+};
 
-const ToastContainer = ({ message, style } : Toast) => {
+const ToastContainer = ({ message, style }: Toast) => {
   const dispatch = useDispatch();
 
   const handleRemove = useCallback(() => {
     dispatch(removeToast(message.id));
-  }, [dispatch, message.id])
+  }, [dispatch, message.id]);
 
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
+  useEffect(() => {
+    const timer = setTimeout(() => {
       handleRemove();
     }, 3000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [handleRemove])
+  }, [handleRemove]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description} style={style}>
+    <Container
+      type={message.type}
+      hasDescription={!!message.description}
+      style={style}
+    >
       {icons[message.type || 'info']}
       <div>
         <strong>{message.title}</strong>
@@ -50,6 +54,6 @@ const ToastContainer = ({ message, style } : Toast) => {
       </button>
     </Container>
   );
-}
+};
 
 export default ToastContainer;

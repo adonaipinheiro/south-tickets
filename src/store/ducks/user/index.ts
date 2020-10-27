@@ -8,33 +8,36 @@ const INITIAL_STATE: UserState = {
   pass: '',
   isLoading: false,
   isLogged: false,
-  error: false
-}
+  error: false,
+};
 
-const user: Reducer<UserState, ActionsTypes> = (state = INITIAL_STATE, action)  => {
+const user: Reducer<UserState, ActionsTypes> = (
+  state = INITIAL_STATE,
+  action,
+) => {
   switch (action.type) {
     case UserTypes.LOAD_REQUEST:
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
 
     case UserTypes.LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isLogged: true,
-      }
+      };
 
     case UserTypes.LOAD_ERROR:
       return {
         ...state,
-        error: true
-      }
+        error: true,
+      };
 
     default:
       return state;
   }
-}
+};
 
 export default user;

@@ -24,4 +24,4 @@ export interface AuthState {
 /**
  * Actions Types
  */
-export type ActionsTypes = ActionType<typeof actions>
+export type ActionsTypes = ActionType<typeof actions>;

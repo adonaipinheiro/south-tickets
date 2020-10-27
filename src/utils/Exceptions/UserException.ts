@@ -5,9 +5,9 @@
  */
 function UserException(message: string): Error {
   return {
-    name: "UserException",
-    message
-  }
+    name: 'UserException',
+    message,
+  };
 }
 
 export default UserException;

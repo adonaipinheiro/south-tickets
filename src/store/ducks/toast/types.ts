@@ -26,4 +26,4 @@ export interface ToastState {
 /**
  * Actions Types
  */
-export type ActionsTypes = ActionType<typeof actions>
+export type ActionsTypes = ActionType<typeof actions>;

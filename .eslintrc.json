@@ -1,16 +1,12 @@
 {
   "env": {
-    "browser": true,
-    "es6": true,
-    "jest/globals": true
+      "browser": true,
+      "es6": true
   },
   "extends": [
-    "react-app",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "airbnb",
-    "prettier",
-    "prettier/react",
+    "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
@@ -28,16 +24,17 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint",
     "react-hooks",
-    "prettier",
-    "jest"
+    "@typescript-eslint",
+    "prettier"
   ],
   "rules": {
-    "no-nested-ternary": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-shadow": "off",
+    "no-case-declarations": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-nested-ternary": "off",
     "prettier/prettier": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-use-before-define": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

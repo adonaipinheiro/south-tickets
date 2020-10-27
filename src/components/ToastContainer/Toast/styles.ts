@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
-import { FiAlertCircle as IconAlert, FiXCircle as IconX, FiCheckCircle as IconCheck, FiInfo as IconInfo } from 'react-icons/fi';
+import {
+  FiAlertCircle as IconAlert,
+  FiXCircle as IconX,
+  FiCheckCircle as IconCheck,
+  FiInfo as IconInfo,
+} from 'react-icons/fi';
 
 interface ContainerInterface {
-  type?: "success" | "info" | "error";
+  type?: 'success' | 'info' | 'error';
   hasDescription: boolean;
 }
 
@@ -19,8 +24,8 @@ const toastTypeVariations = {
   error: css`
     background: #fddede;
     color: #c53030;
-  `
-}
+  `,
+};
 
 export const Container = styled(animated.div)<ContainerInterface>`
   width: 360px;
@@ -62,13 +67,15 @@ export const Container = styled(animated.div)<ContainerInterface>`
     color: inherit;
   }
 
-  ${props => !props.hasDescription && css`
-    align-items: center;
+  ${props =>
+    !props.hasDescription &&
+    css`
+      align-items: center;
 
-    svg {
-      margin-top: 0;
-    }
-  `}
+      svg {
+        margin-top: 0;
+      }
+    `}
 `;
 
 export { IconAlert, IconX, IconCheck, IconInfo };

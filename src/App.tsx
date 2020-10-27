@@ -15,13 +15,13 @@ import Toast from './components/ToastContainer';
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <Provider store={store}>
         <Toast />
         <Routes />
         <GlobalStyles />
       </Provider>
-    </React.Fragment>
+    </>
   );
 }
 

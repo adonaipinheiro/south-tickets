@@ -20,7 +20,7 @@ export function* logIn({ payload }: ActionType<typeof actions.logIn>) {
     console.log(email, password);
     yield put(logInSuccess());
     yield put(logInUser(email, password));
-    yield put(addToast({ title: "Teste", description: "Teste Description" }))
+    yield put(addToast({ title: 'Teste', description: 'Teste Description' }));
   } catch (error) {
     console.log(error);
     yield put(logInError());

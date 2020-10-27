@@ -4,11 +4,7 @@ import React from 'react';
 import { Container } from './styles';
 
 const LoadingPage = () => {
-  return (
-    <Container>
-      Loading
-    </Container>
-  );
+  return <Container>Loading</Container>;
 };
 
 export default LoadingPage;
