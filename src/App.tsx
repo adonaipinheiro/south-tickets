@@ -10,10 +10,14 @@ import Routes from './routes';
 // Global Styles
 import GlobalStyles from './styles/global';
 
+// Global Components
+import Toast from './components/ToastContainer';
+
 function App() {
   return (
     <React.Fragment>
       <Provider store={store}>
+        <Toast />
         <Routes />
         <GlobalStyles />
       </Provider>

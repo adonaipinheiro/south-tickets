@@ -9,9 +9,13 @@ import rootSaga from './ducks/rootSaga';
 
 // Types
 import { AuthState } from './ducks/auth/types';
+import { UserState } from './ducks/user/types';
+import { ToastState } from './ducks/toast/types';
 
 export interface ApplicationState {
-  auth: AuthState
+  auth: AuthState,
+  user: UserState,
+  toast: ToastState,
 }
 
 const sagaMiddleware = createSagaMiddleware();
