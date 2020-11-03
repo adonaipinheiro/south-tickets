@@ -7,7 +7,7 @@ const INITIAL_STATE: AuthState = {
   email: '',
   pass: '',
   isLoading: false,
-  isLogged: false,
+  isLogged: !!localStorage.getItem('isLogged'),
   error: false,
 };
 
@@ -23,6 +23,7 @@ const auth: Reducer<AuthState, ActionsTypes> = (
       };
 
     case AuthTypes.LOAD_SUCCESS:
+      localStorage.setItem('isLogged', 'true');
       return {
         ...state,
         isLoading: false,
@@ -33,6 +34,13 @@ const auth: Reducer<AuthState, ActionsTypes> = (
       return {
         ...state,
         error: true,
+      };
+
+    case AuthTypes.LOAD_OUT:
+      localStorage.removeItem('isLogged');
+      return {
+        ...state,
+        isLogged: false,
       };
 
     default:

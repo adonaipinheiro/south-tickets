@@ -15,13 +15,11 @@ import Toast from './components/ToastContainer';
 
 function App() {
   return (
-    <>
-      <Provider store={store}>
-        <Toast />
-        <Routes />
-        <GlobalStyles />
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Toast />
+      <Routes />
+      <GlobalStyles />
+    </Provider>
   );
 }
 

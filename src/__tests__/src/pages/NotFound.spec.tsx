@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import NotFound from '../../../pages/NotFound';
+import NotFound from '../../../pages/public/NotFound';
 
 describe('Pages - NotFound', () => {
   it('Should be able to render NotFound', () => {

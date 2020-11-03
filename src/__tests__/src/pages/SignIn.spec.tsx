@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import SignIn from '../../../pages/SignIn';
+import SignIn from '../../../pages/public/SignIn';
 
 const mockSelector = jest.fn();
 const mockDispatch = jest.fn();

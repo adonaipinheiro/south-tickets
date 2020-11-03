@@ -6,7 +6,14 @@ import { CSSObject } from 'styled-components';
 import { Toast as ToastI } from '../../../store/ducks/toast/types';
 
 // Styles
-import { Container, IconAlert, IconX, IconCheck, IconInfo } from './styles';
+import {
+  Container,
+  IconAlert,
+  IconX,
+  IconCheck,
+  IconInfo,
+  Progress,
+} from './styles';
 
 // Actions
 import { removeToast } from '../../../store/ducks/toast/actions';
@@ -53,6 +60,7 @@ const ToastContainer = ({ message, style }: Toast) => {
       <button type="button" onClick={handleRemove}>
         <IconX size={18} />
       </button>
+      <Progress />
     </Container>
   );
 };

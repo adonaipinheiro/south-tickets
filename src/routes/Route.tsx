@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Route as ReactRoute,
   Redirect,
@@ -9,21 +10,17 @@ import {
 import LoadingPage from '../components/LoadingPage';
 
 // Interface
+import { ApplicationState } from '../store';
+
 interface RouteProps extends ReactRouteProps {
   isPrivate?: boolean;
   component: React.ComponentType;
 }
 
 const Route = ({ isPrivate, component: Component, ...rest }: RouteProps) => {
-  const [isLoading, setLoading] = useState<boolean>(true);
-
-  const loadTime = useCallback(() => {
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    loadTime();
-  }, [loadTime]);
+  const { isLogged, isLoading } = useSelector(
+    (state: ApplicationState) => state.auth,
+  );
 
   return (
     <ReactRoute
@@ -31,10 +28,10 @@ const Route = ({ isPrivate, component: Component, ...rest }: RouteProps) => {
       render={() => {
         return isLoading ? (
           <LoadingPage />
-        ) : isPrivate ? (
+        ) : isPrivate === isLogged || !isPrivate ? (
           <Component />
         ) : (
-          <Redirect to={{ pathname: '/' }} />
+          <Redirect to={{ pathname: isLogged ? '/' : '/signin' }} />
         );
       }}
     />
@@ -42,7 +39,7 @@ const Route = ({ isPrivate, component: Component, ...rest }: RouteProps) => {
 };
 
 Route.defaultProps = {
-  isPrivate: true,
+  isPrivate: false,
 };
 
 export default Route;

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { animated } from 'react-spring';
 import {
   FiAlertCircle as IconAlert,
@@ -9,21 +9,21 @@ import {
 
 interface ContainerInterface {
   type?: 'success' | 'info' | 'error';
-  hasDescription: boolean;
+  hasDescription?: boolean;
 }
 
 const toastTypeVariations = {
   info: css`
-    background: #ebf8ff;
-    color: #3172b7;
+    background: var(--warning);
+    color: var(--warningDark);
   `,
   success: css`
-    background: #e6fffa;
-    color: #2e656a;
+    background: var(--success);
+    color: var(--successDark);
   `,
   error: css`
-    background: #fddede;
-    color: #c53030;
+    background: var(--error);
+    color: var(--errorDark);
   `,
 };
 
@@ -31,7 +31,7 @@ export const Container = styled(animated.div)<ContainerInterface>`
   width: 360px;
   position: relative;
   padding: 16px 30px 16px 16px;
-  border-radius: 7.5px;
+  border-radius: 5px 5px 0 0;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -76,6 +76,26 @@ export const Container = styled(animated.div)<ContainerInterface>`
         margin-top: 0;
       }
     `}
+`;
+
+const resize = keyframes`
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+`;
+
+export const Progress = styled.div`
+  display: flex;
+  position: absolute;
+  height: 5px;
+  left: 0;
+  bottom: 0;
+  background: #00000020;
+  animation: ${resize} 3s linear 1;
 `;
 
 export { IconAlert, IconX, IconCheck, IconInfo };

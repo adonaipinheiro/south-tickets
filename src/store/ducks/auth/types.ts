@@ -8,6 +8,7 @@ export enum AuthTypes {
   LOAD_REQUEST = '@auth/LOAD_REQUEST',
   LOAD_SUCCESS = '@auth/LOAD_SUCCESS',
   LOAD_ERROR = '@auth/LOAD_ERROR',
+  LOAD_OUT = '@auth/LOAD_OUT',
 }
 
 /**
