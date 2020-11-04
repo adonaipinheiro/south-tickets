@@ -12,3 +12,5 @@ export const logInSuccess = () => action(AuthTypes.LOAD_SUCCESS);
 export const logInError = () => action(AuthTypes.LOAD_ERROR);
 
 export const logOut = () => action(AuthTypes.LOAD_OUT);
+
+export const checkHasUser = () => action(AuthTypes.CHECK_USER);

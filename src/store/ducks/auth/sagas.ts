@@ -6,23 +6,70 @@ import api from '../../../services/api';
 import * as actions from './actions';
 import { logInSuccess, logInError } from './actions';
 
-// User Actions
-import { logInUser } from '../user/actions';
+// Toast Actions
 import { addToast } from '../toast/actions';
+
+// User Actions
+import { userGetInfo } from '../user/actions';
 
 export function* logIn({ payload }: ActionType<typeof actions.logIn>) {
   try {
     const { email, password } = payload;
-    const getUser = yield call(api.getUser, 'uuid');
-    const getAllUsers = yield call(api.getAllUsers);
-    console.log(getUser);
-    console.log(getAllUsers);
-    console.log(email, password);
-    yield put(logInUser(email, password));
+    const user = yield call(api.loginWithEmailAndPass, email, password);
+    console.log(user);
+    localStorage.setItem('isLogged', 'true');
+    localStorage.setItem('uuid', user);
+    yield put(userGetInfo(user));
     yield put(logInSuccess());
-    yield put(addToast({ title: getUser.first, description: getUser.last }));
+    yield put(
+      addToast({
+        title: `Bem-vindo(a)`,
+        description: 'Veja as novidades dos shows!',
+        type: 'success',
+      }),
+    );
   } catch (error) {
-    console.log(error);
+    yield put(
+      addToast({
+        title: 'Alguma coisa deu errado!',
+        description: error.message,
+        type: 'error',
+      }),
+    );
     yield put(logInError());
+  }
+}
+
+export function* getHasUser() {
+  try {
+    yield call(api.logOff);
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('uuid');
+    yield put(addToast({ title: 'Até logo!', type: 'success' }));
+  } catch (error) {
+    yield put(
+      addToast({
+        title: 'Alguma coisa deu errado!',
+        description: error.message,
+        type: 'error',
+      }),
+    );
+  }
+}
+
+export function* logOff() {
+  try {
+    yield call(api.logOff);
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('uuid');
+    yield put(addToast({ title: 'Até logo!', type: 'success' }));
+  } catch (error) {
+    yield put(
+      addToast({
+        title: 'Alguma coisa deu errado!',
+        description: error.message,
+        type: 'error',
+      }),
+    );
   }
 }

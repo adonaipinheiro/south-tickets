@@ -1,12 +1,28 @@
 import { action } from 'typesafe-actions';
 import { UserTypes } from './types';
 
-export const logInUser = (email: string, password: string) =>
+export const userGetInfo = (id: string) =>
   action(UserTypes.LOAD_REQUEST, {
-    email,
-    password,
+    id,
   });
 
-export const logInSuccess = () => action(UserTypes.LOAD_SUCCESS);
+export const updateUserInfo = (
+  email: string,
+  events: Array<any>,
+  name: string,
+  photo: string,
+  tickets: Array<any>,
+  uid: string,
+) =>
+  action(UserTypes.UPDATE_USER, {
+    email,
+    events,
+    name,
+    photo,
+    tickets,
+    uid,
+  });
 
-export const logInError = () => action(UserTypes.LOAD_ERROR);
+export const userSuccess = () => action(UserTypes.LOAD_SUCCESS);
+
+export const userError = () => action(UserTypes.LOAD_ERROR);

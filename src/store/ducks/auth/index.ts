@@ -4,9 +4,7 @@ import { Reducer } from 'redux';
 import { AuthState, AuthTypes, ActionsTypes } from './types';
 
 const INITIAL_STATE: AuthState = {
-  email: '',
-  pass: '',
-  isLoading: false,
+  isLoading: true,
   isLogged: !!localStorage.getItem('isLogged'),
   error: false,
 };
@@ -22,8 +20,13 @@ const auth: Reducer<AuthState, ActionsTypes> = (
         isLoading: true,
       };
 
+    case AuthTypes.CHECK_USER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case AuthTypes.LOAD_SUCCESS:
-      localStorage.setItem('isLogged', 'true');
       return {
         ...state,
         isLoading: false,
@@ -33,11 +36,11 @@ const auth: Reducer<AuthState, ActionsTypes> = (
     case AuthTypes.LOAD_ERROR:
       return {
         ...state,
+        isLoading: false,
         error: true,
       };
 
     case AuthTypes.LOAD_OUT:
-      localStorage.removeItem('isLogged');
       return {
         ...state,
         isLogged: false,

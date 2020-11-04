@@ -4,19 +4,31 @@ import api from '../../../services/api';
 
 // Actions
 import * as actions from './actions';
-import { logInSuccess, logInError } from './actions';
+import { userSuccess, userError, updateUserInfo } from './actions';
 
-export function* logInUser({ payload }: ActionType<typeof actions.logInUser>) {
+// Auth Acitons
+import { logInSuccess } from '../auth/actions';
+
+export function* getUserInfo({
+  payload,
+}: ActionType<typeof actions.userGetInfo>) {
   try {
-    const { email, password } = payload;
-    const getUser = yield api.getUser('uuid');
-    const getAllUsers = yield api.getAllUsers();
+    const getUser = yield api.getUser(payload.id);
     console.log(getUser);
-    console.log(getAllUsers);
-    console.log(email, password);
+    yield put(
+      updateUserInfo(
+        getUser.email,
+        getUser.events,
+        getUser.name,
+        getUser.photo,
+        getUser.tickets,
+        getUser.uid,
+      ),
+    );
+    yield put(userSuccess());
     yield put(logInSuccess());
   } catch (error) {
     console.log(error);
-    yield put(logInError());
+    yield put(userError());
   }
 }

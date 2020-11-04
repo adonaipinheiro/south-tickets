@@ -1,8 +1,10 @@
 export type User = {
-  id: string;
-  first: string;
-  last: string;
-  born: number;
+  email: string;
+  events: Array<any>;
+  name: string;
+  photo: string;
+  tickets: Array<any>;
+  uid: string;
 };
 
 export default interface ApiInterface {
@@ -27,4 +29,19 @@ export default interface ApiInterface {
    * @returns {Array<User>} Retorna um Usuário
    */
   getUser(id: string): Promise<User>;
+  /**
+   * Função `createUserWithEmailAndPass`
+   * @returns {string} Retorna um Usuário
+   */
+  createUserWithEmailAndPass(email: string, pass: string): Promise<string>;
+  /**
+   * Função `loginWithEmailAndPass`
+   * @returns {string} Retorna um Usuário
+   */
+  loginWithEmailAndPass(email: string, pass: string): Promise<string>;
+  /**
+   * Função `loginWithEmailAndPass`
+   * @returns {string} Retorna um Usuário
+   */
+  logOff(): Promise<string>;
 }

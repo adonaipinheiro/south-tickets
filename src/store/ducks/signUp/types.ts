@@ -4,20 +4,17 @@ import * as actions from './actions';
 /**
  * Types
  */
-export enum AuthTypes {
-  LOAD_REQUEST = '@auth/LOAD_REQUEST',
-  CHECK_USER = '@auth/CHECK_USER',
-  LOAD_SUCCESS = '@auth/LOAD_SUCCESS',
-  LOAD_ERROR = '@auth/LOAD_ERROR',
-  LOAD_OUT = '@auth/LOAD_OUT',
+export enum SignUpTypes {
+  LOAD_REQUEST = '@signUp/LOAD_REQUEST',
+  LOAD_SUCCESS = '@signUp/LOAD_SUCCESS',
+  LOAD_ERROR = '@signUp/LOAD_ERROR',
 }
 
 /**
  * State Type
  */
-export interface AuthState {
+export interface SignUpState {
   readonly isLoading: boolean;
-  readonly isLogged: boolean;
   readonly error: boolean;
 }
 

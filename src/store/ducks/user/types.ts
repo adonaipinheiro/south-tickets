@@ -6,6 +6,7 @@ import * as actions from './actions';
  */
 export enum UserTypes {
   LOAD_REQUEST = '@user/LOAD_REQUEST',
+  UPDATE_USER = '@user/UPDATE_USER',
   LOAD_SUCCESS = '@user/LOAD_SUCCESS',
   LOAD_ERROR = '@user/LOAD_ERROR',
 }
@@ -15,9 +16,12 @@ export enum UserTypes {
  */
 export interface UserState {
   readonly email: string;
-  readonly pass: string;
+  readonly events: Array<any>;
+  readonly name: string;
+  readonly photo: string;
+  readonly tickets: Array<any>;
+  readonly uid: string;
   readonly isLoading: boolean;
-  readonly isLogged: boolean;
   readonly error: boolean;
 }
 

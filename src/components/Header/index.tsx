@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ApplicationState } from '../../store';
 import { logOut } from '../../store/ducks/auth/actions';
-import { addToast } from '../../store/ducks/toast/actions';
 
-import { Container, DropDown } from './styles';
+import { Container, DropDown, FaUser, FaCalendar, FaTicketAlt } from './styles';
 
 const Header = () => {
   const [hidden, setHidden] = useState<boolean>(false);
   const { isLogged } = useSelector((state: ApplicationState) => state.auth);
+  const { name } = useSelector((state: ApplicationState) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -20,7 +20,6 @@ const Header = () => {
   const handleLogOff = () => {
     if (isLogged) {
       dispatch(logOut());
-      dispatch(addToast({ title: 'Até logo!', type: 'success' }));
     } else {
       history.push('/signin');
     }
@@ -34,14 +33,28 @@ const Header = () => {
 
   return (
     <Container>
-      <h2>South Tickets</h2>
-      <button type="button" onClick={handlePress}>
-        Menu
-      </button>
+      <Link to="/" className="logo">
+        South Tickets
+      </Link>
+      <div className="userInfo">
+        <span>{name}</span>
+        <button type="button" onClick={handlePress}>
+          <FaUser />
+        </button>
+      </div>
       <DropDown isShowing={hidden}>
-        <p>Aodnai</p>
-        <p>Aodnai</p>
-        <p>Aodnai</p>
+        <Link to={`/profile/${name}`}>
+          <FaUser />
+          Meu Perfil
+        </Link>
+        <Link to="/my-tickets">
+          <FaTicketAlt />
+          Meus Ingressos
+        </Link>
+        <Link to="/my-events">
+          <FaCalendar />
+          Meus Eventos
+        </Link>
         <button type="button" onClick={handleLogOff}>
           {isLogged ? 'Sair' : 'Entrar'}
         </button>

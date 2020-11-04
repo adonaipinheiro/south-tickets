@@ -19,15 +19,51 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Dashboard} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/event/:id" component={Event} />
-        <Route path="/profile/:name" component={Profile} isPrivate />
-        <Route path="/my-tickets" component={MyTickets} isPrivate />
-        <Route path="/my-events" component={MyEvents} isPrivate />
-        <Route path="/create-event" component={CreateEvent} isPrivate />
-        <Route path="*" component={NotFound} />
+        <Route path="/" routeName="South Tickets" exact component={Dashboard} />
+        <Route
+          path="/signin"
+          routeName="Entrar | South Tickets"
+          component={SignIn}
+        />
+        <Route
+          path="/signup"
+          routeName="Cadastrar | South Tickets"
+          component={SignUp}
+        />
+        <Route
+          path="/event/:id"
+          routeName="Evento | South Tickets"
+          component={Event}
+        />
+        <Route
+          path="/profile/:name"
+          routeName="Perfil | South Tickets"
+          component={Profile}
+          isPrivate
+        />
+        <Route
+          path="/my-tickets"
+          routeName="Meus ingressos | South Tickets"
+          component={MyTickets}
+          isPrivate
+        />
+        <Route
+          path="/my-events"
+          routeName="Meus Eventos | South Tickets"
+          component={MyEvents}
+          isPrivate
+        />
+        <Route
+          path="/create-event"
+          routeName="Criar evento | South Tickets"
+          component={CreateEvent}
+          isPrivate
+        />
+        <Route
+          path="*"
+          routeName="Página não encontrada | South Tickets"
+          component={NotFound}
+        />
       </Switch>
     </Router>
   );

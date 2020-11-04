@@ -13,6 +13,12 @@ jest.mock('react-redux', () => {
   };
 });
 
+jest.mock('react-react-router-dom', () => {
+  return {
+    Link: ({ children }: { children: React.ReactNode }) => children,
+  };
+});
+
 describe('Pages - SignIn', () => {
   it('Should be able to render SignIn', () => {
     const app = render(<SignIn />);

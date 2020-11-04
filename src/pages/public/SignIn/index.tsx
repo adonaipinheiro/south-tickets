@@ -18,10 +18,13 @@ import {
 } from './styles';
 
 // Images
-import eventInfo from '../../../assets/SignIn/events_info.svg';
+import eventInfoOrange from '../../../assets/SignIn/events_info_orange.svg';
 
 // Actions
 import { addToast } from '../../../store/ducks/toast/actions';
+
+// Components
+import LoadingPage from '../../../components/LoadingPage';
 
 const SignIn = () => {
   const emailField = useRef<HTMLInputElement>(null);
@@ -30,8 +33,10 @@ const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const signIn = () => {
-    dispatch(logIn('teste', 'senha'));
+  const signIn = async () => {
+    dispatch(
+      logIn(emailField.current?.value || '', passField.current?.value || ''),
+    );
   };
 
   const checkEmailAndPass = (event: FormEvent<HTMLFormElement>) => {
@@ -41,6 +46,18 @@ const SignIn = () => {
       dispatch(
         addToast({
           title: 'Campos vazios',
+          description: 'Por favor verifique os campos digitados',
+          type: 'info',
+        }),
+      );
+    } else if (
+      passField.current?.value !== undefined
+        ? passField.current?.value.length < 6
+        : false
+    ) {
+      dispatch(
+        addToast({
+          title: 'A senha deve conter pelo menos 6 dígitos',
           description: 'Por favor verifique os campos digitados',
           type: 'info',
         }),
@@ -56,6 +73,10 @@ const SignIn = () => {
     }
   }, [isLogged, history]);
 
+  if (isLogged) {
+    return <LoadingPage />;
+  }
+
   return (
     <Container>
       <Content>
@@ -64,7 +85,7 @@ const SignIn = () => {
             <div className="separator" />
             <h2>O melhor lugar para você comprar seus ingressos!</h2>
           </div>
-          <img alt="South Tickets" src={eventInfo} />
+          <img alt="South Tickets" src={eventInfoOrange} />
         </InfoArea>
         <LoginArea>
           <FaTicketAlt />

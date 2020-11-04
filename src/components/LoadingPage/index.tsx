@@ -1,10 +1,15 @@
 import React from 'react';
 
 // Styles
-import { Container } from './styles';
+import { Container, Icon } from './styles';
 
 const LoadingPage = () => {
-  return <Container>Loading</Container>;
+  return (
+    <Container>
+      <Icon />
+      <span>Carregando...</span>
+    </Container>
+  );
 };
 
 export default LoadingPage;
